@@ -34,7 +34,8 @@
         left: 0;
         width: 100%;
       }
-      .hidden-screen {
+      .hidden-screen,
+      .hidden { /* Добавил .hidden для универсальности */
         display: none;
       }
       .game-btn {
@@ -86,26 +87,6 @@
         >
           Empieza a Ganar Ahora
         </button>
-
-        <div id="idInputSection" class="hidden mt-6 max-w-sm w-full">
-          <input
-            id="betIdInput"
-            type="text"
-            inputmode="numeric"
-            pattern="\d*"
-            placeholder="Tu ID de Betwinner"
-            class="w-full p-3 rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-400"
-          />
-          <button
-            id="submitIdBtn"
-            class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg"
-          >
-            Enviar ID
-          </button>
-          <p id="inputError" class="hidden mt-2 text-red-500 text-sm">
-            Por favor ingresa un ID numérico válido de Betwinner.
-          </p>
-        </div>
 
         <div id="gameButtonsSection" class="hidden mt-8 w-full max-w-md">
           <h3 class="text-xl font-semibold mb-4">Elige Tu Juego</h3>
@@ -183,30 +164,13 @@
 
       // Elementos
       const startButton = document.getElementById("startButton");
-      const idInputSection = document.getElementById("idInputSection");
       const gameButtonsSection = document.getElementById("gameButtonsSection");
-      const submitIdBtn = document.getElementById("submitIdBtn");
-      const betIdInput = document.getElementById("betIdInput");
-      const inputError = document.getElementById("inputError");
-
-      // Mostrar campo de entrada al hacer clic en el botón
+      
+      // Логика была упрощена
+      // Показать кнопки с играми сразу после нажатия на стартовую кнопку
       startButton.addEventListener("click", () => {
         startButton.classList.add("hidden");
-        idInputSection.classList.remove("hidden");
-      });
-
-      // Lógica para enviar ID
-      submitIdBtn.addEventListener("click", () => {
-        const value = betIdInput.value.trim();
-        const isValid = /^\d{6,}$/.test(value); // al menos 6 dígitos
-
-        if (!isValid) {
-          inputError.classList.remove("hidden");
-        } else {
-          inputError.classList.add("hidden");
-          idInputSection.classList.add("hidden");
-          gameButtonsSection.classList.remove("hidden");
-        }
+        gameButtonsSection.classList.remove("hidden");
       });
 
       // Simular actualizaciones de consola
